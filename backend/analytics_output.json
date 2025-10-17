@@ -1,0 +1,47 @@
+{
+    "price_summary": {
+        "count": 215.0,
+        "mean": 67.6306511627907,
+        "std": 57.96215030343771,
+        "min": 0.6,
+        "25%": 24.99,
+        "50%": 53.99,
+        "75%": 89.99,
+        "max": 349.0
+    },
+    "top_brands": {
+        "Flash Furniture Store": 5,
+        "MoNiBloom Store": 5,
+        "Kingston Brass Store": 4,
+        "Caroline's Treasures Store": 4,
+        "HomePop Store": 4,
+        "Convenience Concepts Store": 3,
+        "GOYMFK": 2,
+        "Casual Home Store": 2,
+        "GXFC ZHAO Store": 2,
+        "glitzhome": 2
+    },
+    "top_materials": {
+        "Wood": 32,
+        "Engineered Wood": 25,
+        "Metal": 15,
+        "Rubber": 15,
+        "Foam": 12,
+        "Iron": 8,
+        "Brass": 7,
+        "Sponge": 5,
+        "Plastic": 5,
+        "Stainless Steel": 5
+    },
+    "top_countries": {
+        "China": 98,
+        "USA": 10,
+        "Taiwan": 7,
+        "Vietnam": 4,
+        "Malaysia": 2,
+        "Morocco": 1,
+        "Thailand": 1,
+        "India": 1,
+        "Israel": 1
+    }
+}

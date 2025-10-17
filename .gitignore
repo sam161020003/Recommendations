@@ -1,0 +1,44 @@
+# Python virtual environment
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IDE and OS specific
+.idea/
+.vscode/
+.DS_Store
+
+# Frontend dependencies and build files
+frontend/node_modules
+frontend/build
+frontend/.pnp.js
+frontend/.pnp.loader.js
+
+# Environment files with secret keys
+.env
+backend/.env
+frontend/.env
+
+
+**Action 2: Create the `README.md` File**
+
+This is the instruction manual for your project. It explains what the project does, what technologies it uses, and how to run it. A good README is essential for any software project.
+
+1.  In the root directory of your project (`Ikarus3D`), create a new file named `README.md`.
+2.  Paste the content below into this file. It has been pre-filled with the details of your project.
+
+
+http://googleusercontent.com/immersive_entry_chip/0
+
+**Action 3: Upload to GitHub**
+
+You are now ready to create your repository and push your code.
+1.  Go to [GitHub](https://github.com) and create a new, empty repository.
+2.  Follow the instructions on the repository page to "push an existing repository from the command line."
+
+You have officially completed every part of the assignment. **Congratulations on building an amazing project!**
