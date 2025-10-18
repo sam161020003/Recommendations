@@ -6,9 +6,9 @@ python-dotenv
 pinecone
 sentence-transformers
 torch
-# Use specific recent LangChain versions
 langchain-core>=0.3.0,<0.4.0
 langchain>=0.3.0,<0.4.0
-langchain-google-genai>=2.1.0,<2.2.0
-pydantic # Keep pydantic, let others manage its version
-google-generativeai
+# Use older compatible Google AI versions
+langchain-google-genai~=1.0.10
+google-generativeai~=0.3.2
+pydantic
