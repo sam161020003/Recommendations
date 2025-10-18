@@ -8,7 +8,7 @@ sentence-transformers
 torch
 langchain-core>=0.3.0,<0.4.0
 langchain>=0.3.0,<0.4.0
-# Use older compatible Google AI versions
 langchain-google-genai~=1.0.10
-google-generativeai~=0.3.2
+# Update this line to match langchain-google-genai's requirement
+google-generativeai~=0.7.0
 pydantic
