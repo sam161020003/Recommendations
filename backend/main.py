@@ -1,4 +1,4 @@
-import os
+import os  # <--- Make sure this import is present
 import json
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -20,6 +20,13 @@ from langchain_core.output_parsers import StrOutputParser
 # Load environment variables from .env file
 load_dotenv()
 
+# --- Absolute Path for Analytics File ---
+# Determine the absolute path to the directory containing this script (main.py)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Construct the absolute path to the analytics file within the same directory
+ANALYTICS_FILE_PATH = os.path.join(BASE_DIR, "analytics_output.json")
+# --- End Absolute Path Change ---
+
 # Check for GPU
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f"--- Backend using device: {device} ---")
@@ -39,7 +46,6 @@ if index_name not in pc.list_indexes().names():
 index = pc.Index(index_name)
 print(f"--- Connected to Pinecone index '{index_name}'. ---")
 
-
 # Initialize LangChain with Google Gemini (latest stable model)
 llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", google_api_key=os.getenv("GOOGLE_API_KEY"))
 
@@ -51,7 +57,6 @@ prompt = ChatPromptTemplate.from_messages([
 output_parser = StrOutputParser()
 description_chain = prompt | llm | output_parser
 
-
 # Initialize FastAPI app
 app = FastAPI()
 
@@ -59,7 +64,7 @@ app = FastAPI()
 # 2. CORS MIDDLEWARE
 # =====================================================================================
 
-origins = ["http://localhost:3000","https://*.vercel.app"]
+origins = ["http://localhost:3000", "https://*.vercel.app"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -67,7 +72,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 # =====================================================================================
 # 3. Pydantic Models
@@ -91,11 +95,20 @@ def read_root():
 
 @app.get("/analytics")
 def get_analytics():
+    """
+    Reads and returns the pre-computed analytics data from the JSON file.
+    Uses an absolute path to ensure the file is found.
+    """
     try:
-        with open("analytics_output.json", "r") as f:
-            return json.load(f)
+        # Use the absolute path defined during initialization
+        with open(ANALYTICS_FILE_PATH, "r") as f:
+            analytics_data = json.load(f)
+        return analytics_data
     except FileNotFoundError:
-        raise HTTPException(status_code=404, detail="Analytics file not found.")
+        # Use 500 status code as it's a server configuration issue if the file is missing
+        raise HTTPException(status_code=500, detail="Analytics file not found on server.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/recommend")
 def recommend_products(query: Query):
@@ -109,7 +122,7 @@ def recommend_products(query: Query):
             top_k=query.top_k,
             include_metadata=True
         )
-        
+
         product_matches = [
             {'id': match['id'], 'score': match['score'], 'metadata': match['metadata']}
             for match in results['matches']
@@ -132,7 +145,10 @@ def generate_description(details: ProductDetails):
         # This will now print a more detailed error if Google API fails
         print(f"Error during description generation: {e}")
         raise HTTPException(status_code=500, detail="Failed to generate description.")
+
+# --- This block is kept as per your request ---
 if __name__ == "__main__":
     import uvicorn
     print("🚀 Starting FastAPI server on port 7860...")
     uvicorn.run("main:app", host="0.0.0.0", port=7860)
+# --- End unchanged block ---
