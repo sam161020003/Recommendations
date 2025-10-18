@@ -132,3 +132,7 @@ def generate_description(details: ProductDetails):
         # This will now print a more detailed error if Google API fails
         print(f"Error during description generation: {e}")
         raise HTTPException(status_code=500, detail="Failed to generate description.")
+if __name__ == "__main__":
+    import uvicorn
+    print("🚀 Starting FastAPI server on port 7860...")
+    uvicorn.run("main:app", host="0.0.0.0", port=7860)
