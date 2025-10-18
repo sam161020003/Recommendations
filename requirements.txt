@@ -1,14 +1,12 @@
-# requirements.txt
-
 fastapi
 uvicorn[standard]
 python-dotenv
-pinecone
+pinecone-client
 sentence-transformers
-torch
-# Allow newer compatible LangChain versions
-langchain-core>=0.3.0,<1.0.0
-langchain>=0.3.0,<1.0.0
-langchain-google-genai~=1.0.10
-google-generativeai~=0.7.0
-pydantic
+torch==2.2.2
+langchain==0.3.7
+langchain-core==0.3.13
+langchain-community==0.3.7
+langchain-google-genai==1.0.10
+google-generativeai==0.7.2
+pydantic==2.8.2
