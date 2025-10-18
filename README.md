@@ -3,7 +3,7 @@ title: Ikarus3D AI Backend
 emoji: 🚀
 colorFrom: indigo
 colorTo: green
-sdk: python
+sdk: gradio
 sdk_version: 3.11
 app_file: backend/main.py
 pinned: false
