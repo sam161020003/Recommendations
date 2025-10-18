@@ -59,7 +59,7 @@ app = FastAPI()
 # 2. CORS MIDDLEWARE
 # =====================================================================================
 
-origins = ["http://localhost:3000"]
+origins = ["http://localhost:3000","https://*.vercel.app"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

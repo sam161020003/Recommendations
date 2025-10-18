@@ -7,3 +7,4 @@ torch
 langchain
 langchain-google-genai
 pydantic
+google-generativeai
